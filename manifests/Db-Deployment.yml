@@ -14,11 +14,13 @@ spec:
       labels:
         app: db
     spec:
-      container:
+      containers:
         - name: cont-1
           image: srujan28/k8sdockerweb:db-image
           ports:
             - containerPort: 3306
+      imagePullSecrets:
+        - name: dockerhub
 
 
 ---
