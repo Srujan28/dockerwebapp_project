@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment2
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      container:
+        - name: cont-1
+          image: srujan28/k8sdockerweb:db-image
+          ports:
+            - containerPort: 3306
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dockerwebsvc
+
+spec:
+  clusterIp: None
+  selector:
+    app: dockerweb
+  ports:
+    - port: 3306
+      targetPort: 3306
