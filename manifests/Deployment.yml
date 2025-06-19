@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dockerweb
+  template:
+    metadata:
+      labels:
+        app: dockerweb
+    spec:
+      container:
+        - name: cont-1
+          image: srujan28/k8sdockerweb:app-image
+          ports:
+            - containerPort: 8080
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dockerwebsvc
+
+spec:
+  type: LoadBalancer
+  selector:
+    app: dockerweb
+  ports:
+    - port: 8080
+      targetPort: 8080
