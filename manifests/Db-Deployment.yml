@@ -32,7 +32,7 @@ metadata:
 spec:
   clusterIp: None
   selector:
-    app: dockerweb
+    app: db
   ports:
     - port: 3306
       targetPort: 3306
